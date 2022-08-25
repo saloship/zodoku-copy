@@ -1,0 +1,69 @@
+:root{
+    --gap: 5px;
+
+    --sudoku-cell-size:50px;
+
+    --bg-main:#CFD2CF;
+    --blue:#005958;
+    --red:#EB1D36;
+    --white: #F5EDDC;
+
+    --font-size: 2rem;
+    --font-size2: 4rem;
+    --grid-size:9;
+
+
+}
+body{
+    /*overflow: hidden;*/
+    height: 100%;
+    background-color:var(--white);
+}
+
+.main{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5,auto);
+
+}
+
+    .main-game{
+        grid-column: 4/10;
+
+        height: 100%;
+        flex-direction: column;
+    }
+    #main-grid{
+        display: grid; /* layout is defined in app.js */
+        gap: var(--gap);
+        grid-row: 3/5;
+    }
+
+
+     #main-grid div{
+        height: var(--sudoku-cell-size) ;
+        width: var(--sudoku-cell-size);
+        background-color: var(--bg-main);
+        color: var(--blue);
+        font-size: var(--font-size);
+        cursor: pointer;
+        align-content: center;
+         text-align: center;
+
+    }
+
+     #message{
+        /* border: none;
+         background-color: var(--white);
+         color: var(--white);*/
+         align-self: center;
+         grid-row: 4/5;
+         grid-column:6/8;
+         gap: var(--gap);
+         margin: 10px;
+     }
+     #message::after{
+         content: "/a";
+         white-space: pre;
+     }
+     
