@@ -223,10 +223,11 @@ const clearTheBoard = ()=>{
             let cellId = (i + 1) + "-" + (j + 1);
             clearCell = document.getElementById(cellId)
             clearCell.innerHTML ="";
-            clearCell.style.background ="grey"
+            clearCell.style.background ="var(--white)"
 
         }
     }
+    timer();
     displayGameBoard()
 }
 
@@ -255,8 +256,8 @@ const displayGameBoard = ()=>{
                     puzzleDigits.innerHTML = value;
                 // puzzleDigits.classList.add("bolder");
 
-                puzzleDigits.style.color = "white";
-                puzzleDigits.style.background = "#646767";
+                puzzleDigits.style.color = "#3B4044";
+                puzzleDigits.style.background = "#C1D4E8";
 
             }
             else {
@@ -306,7 +307,7 @@ function autoInputCheck(r,c,n){
         console.log("passed true")
     }
     else {
-        alert("not valid in put");
+        alert("err think harder");
         console.log(positionValid());
         console.log(inputValid());
         console.log(matchAnswer());
@@ -500,6 +501,73 @@ function boxesGood(board){
     return true
 }
 
+window.addEventListener("load", timer);
+
+ function timer() {
+    const clock = document.getElementById("time");
+    let time = -1, intervalId;
+    function incrementTime() {
+        time++;
+        clock.textContent =
+            ("0" + Math.trunc(time / 60)).slice(-2) +
+            ":" + ("0" + (time % 60)).slice(-2);
+    }
+    incrementTime();
+    intervalId = setInterval(incrementTime, 1000);
+}
+/*
+window.addEventListener("load", function() {
+
+    var seconds = 0;
+    var tens = 0;
+    var appendTens = document.getElementById("tens")
+    var appendSeconds = document.getElementById("seconds")
+
+    //start
+        clearInterval(Interval);
+        let Interval = setInterval(startTimer, 10);
 
 
 
+function startTimer () {
+    tens++;
+
+    if(tens <= 9){
+        appendTens.innerHTML = "0" + tens;
+    }
+
+    if (tens > 9){
+        appendTens.innerHTML = tens;
+
+    }
+
+    if (tens > 99) {
+        console.log("seconds");
+        seconds++;
+        appendSeconds.innerHTML = "0" + seconds;
+        tens = 0;
+        appendTens.innerHTML = "0" + 0;
+    }
+
+    if (seconds > 9){
+        var second = seconds.toString()
+        appendSeconds.innerHTML = second;
+    }
+
+}
+
+
+})
+//stop
+clearInterval(Interval);
+
+//reset
+onresets = function () {
+    clearInterval(Interval);
+    tens = "00";
+    seconds = "00";
+    appendTens.innerHTML = tens;
+    appendSeconds.innerHTML = seconds;
+}
+
+*/

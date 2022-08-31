@@ -10,6 +10,21 @@
 <body>
 <div class="main">
         <div class="main-game">
+            <div id="topPadding"></div>
+            <div class="guideNumRow">
+
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+
+            </div>
+            <div id="bottomPadding"></div>
             <h1>Zodoku</h1>
             <div id="help"></div>
             <br>
@@ -24,9 +39,23 @@
                     </select>
                 </div>
 
-                <div id="timer">Timer</div>
+                <span id="seconds">Timer ::   <span id="time" >00:00</span></span>
+<!--                    <p id="timer"> Timer:<span id="seconds">00</span>:<span id="tens">00</span></p>-->
+
             </div>
             <br>
+            <div class="guideNum">
+                <div class="num">1</div>
+                <div class="num">2</div>
+                <div class="num">3</div>
+                <div class="num">4</div>
+                <div class="num">5</div>
+                <div class="num">6</div>
+                <div class="num">7</div>
+                <div class="num">8</div>
+                <div class="num">9</div>
+            </div>
+
             <div id="main-grid"></div>
             <br>
             <input type="text" id="message" maxlength="3" onchange="takeInput()">
@@ -38,11 +67,13 @@
                     <input type="checkbox" id="autoCheck" checked>
                     </div>
                     <div id="newGame">
-                        <button type="button" onclick="setGameBoard()">New Game</button>
+                        <button type="button" onclick="setGameBoard()" id="refreshButton">New Game</button>
                     </div>
                 </div>
+
         </div>
-    <div class="sideBar"></div>
+
+
 
 </div>
 
