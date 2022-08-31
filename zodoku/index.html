@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
     <title>Zodoku</title>
     <link rel="stylesheet" href="app.css">
 
@@ -9,15 +10,40 @@
 <body>
 <div class="main">
         <div class="main-game">
-            <div id="main-grid">
+            <h1>Zodoku</h1>
+            <div id="help"></div>
+            <br>
+            <div  class="secondContainer">
+                <div id="level">
+                    <label for="levels">level:</label>
+                    <select name="levels" id="levels" onchange="clearTheBoard()">
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                        <option value="4">Extreme</option>
+                    </select>
+                </div>
+
+                <div id="timer">Timer</div>
             </div>
+            <br>
+            <div id="main-grid"></div>
+            <br>
+            <input type="text" id="message" maxlength="3" onchange="takeInput()">
+            <br>
 
-
-
-
+                <div class="bottomBar">
+                    <div >
+                    <label class="switch">Auto-check</label>
+                    <input type="checkbox" id="autoCheck" checked>
+                    </div>
+                    <div id="newGame">
+                        <button type="button" onclick="setGameBoard()">New Game</button>
+                    </div>
+                </div>
         </div>
+    <div class="sideBar"></div>
 
-    <input type="text" id="message">
 </div>
 
 
