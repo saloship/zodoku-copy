@@ -153,7 +153,7 @@ const pokingHoles = (array)=> {
 }
 
 // ______TESTS______ //
-console.log(fillDiagonal(twoDimensionArray(9,9)))
+// console.log(fillDiagonal(twoDimensionArray(9,9)))
 // const check = fillDiagonal(twoDimensionArray(9, 9));
 
 // ______TESTS______ //
@@ -239,8 +239,8 @@ function mainPuzzle(){
     return pokingHoles(solution)
 }
  let testPuzzle = mainPuzzle();
-console.log(testPuzzle);
-console.log(answerKey)
+/*console.log(testPuzzle);
+console.log(answerKey)*/
 
 
 
@@ -257,15 +257,15 @@ const displayGameBoard = ()=>{
                 // puzzleDigits.classList.add("bolder");
 
                 puzzleDigits.style.color = "#3B4044";
-                puzzleDigits.style.background = "#C1D4E8";
+                puzzleDigits.style.background = "#C7DBF0";
 
             }
             else {
-                console.log("empty")
+                // console.log("empty")
             }
         }
     }
-    console.log(tester)
+    // console.log(tester)
 }
 displayGameBoard();
 
@@ -308,9 +308,9 @@ function autoInputCheck(r,c,n){
     }
     else {
         alert("err think harder");
-        console.log(positionValid());
-        console.log(inputValid());
-        console.log(matchAnswer());
+        // console.log(positionValid());
+        // console.log(inputValid());
+        // console.log(matchAnswer());
         // console.log(n);
 
     }
