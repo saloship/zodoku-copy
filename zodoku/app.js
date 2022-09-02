@@ -332,7 +332,7 @@ function myFunction(text) {
     x.className = "show";
     x.innerHTML = text
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
 }
 
 //still to work on
