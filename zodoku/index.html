@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
     <title>Zodoku</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" media="only screen and (max-width: 600px)" href="mobile.css" />
+    <link rel="stylesheet" media="only screen and (min-width: 601px)" href="app.css" />
 <!--    <link rel="icon" type="image/png" href="zodoku.png">-->
 
 </head>
@@ -41,7 +42,7 @@
                 </div>
 
 <!--                <span id="seconds">Timer ::   <span id="time" >00:00</span></span>-->
-                    <p id="timer"> Timer:<span id="seconds">00</span>:<span id="tens">00</span></p>
+                    <div id="timer"> Timer:<span id="seconds">00</span>:<span id="tens">00</span></div>
 
             </div>
             <br>
