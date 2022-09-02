@@ -646,6 +646,7 @@ function setDigits() {
 
                 const tile =document.getElementById(coor);
                 tile.innerText = number;
+                user_answers[r-1][c-1]=number;
 
 
             }
