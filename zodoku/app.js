@@ -57,10 +57,12 @@ const num = shuffle(numArray);
 
 
 
-// create a two dimensional array
+// program to create a two dimensional array
 
 function twoDimensionArray(a, b) {
     let arr = [];
+
+    // creating two dimensional array
     for (let i = 0; i< a; i++) {
         for(let j = 0; j< b; j++) {
             arr[i] = [];
@@ -194,6 +196,7 @@ function solved(board){
 
 
 /// value for a and b is size
+//value for holes is level
 
 
 function randomIntFromInterval(min, max) { // min and max included
@@ -277,7 +280,7 @@ let textBox = document.getElementById('message');
 
 
 
-
+/*textBox.addEventListener('change',(event)=>{});*/
 textBox.addEventListener("keyup",(takeInput)=>{
 // const takeInput=()=>{
     if (textBox.value.length === 3){
@@ -292,6 +295,13 @@ textBox.addEventListener("keyup",(takeInput)=>{
         function clearText(){
             textBox.value = "";
         }
+        // user_answers[(r-1)*size + (c-1)]= n;
+        // textBox.value = "";
+
+        // console.log(user_answers);
+
+
+
     }
 
 })
@@ -388,7 +398,8 @@ const displayNumber=(x)=>{
 function nextBoards(board){
     // THIS FUNCTION WORKS.
     // Board -> List[Board]
-   // const res = [];
+    // finds the first emply square and generates 9 different boards filling in that square with numbers 1...9
+    const res = [];
     const firstEmpty = findEmptySquare(board)
     if (firstEmpty != undefined){
         const y = firstEmpty[0]
@@ -418,11 +429,13 @@ function findEmptySquare(board){
 }
 
 // ______TESTS______ //
-
+// console.log(nextBoards(bd3))
+// console.log(findEmptySquare(bd3))
 // ______TESTS______ //
 
 function keepOnlyValid(boards){
     // THIS FUNCTION WORKS.
+    // List[Board] -> List[Board]
     // filters out all of the invalid boards from the list
     var res = []
     for (var i = 0; i < boards.length; i++){
