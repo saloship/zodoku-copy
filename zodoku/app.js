@@ -57,12 +57,10 @@ const num = shuffle(numArray);
 
 
 
-// program to create a two dimensional array
+// create a two dimensional array
 
 function twoDimensionArray(a, b) {
     let arr = [];
-
-    // creating two dimensional array
     for (let i = 0; i< a; i++) {
         for(let j = 0; j< b; j++) {
             arr[i] = [];
@@ -196,7 +194,6 @@ function solved(board){
 
 
 /// value for a and b is size
-//value for holes is level
 
 
 function randomIntFromInterval(min, max) { // min and max included
@@ -280,7 +277,7 @@ let textBox = document.getElementById('message');
 
 
 
-/*textBox.addEventListener('change',(event)=>{});*/
+
 textBox.addEventListener("keyup",(takeInput)=>{
 // const takeInput=()=>{
     if (textBox.value.length === 3){
@@ -295,13 +292,6 @@ textBox.addEventListener("keyup",(takeInput)=>{
         function clearText(){
             textBox.value = "";
         }
-        // user_answers[(r-1)*size + (c-1)]= n;
-        // textBox.value = "";
-
-        // console.log(user_answers);
-
-
-
     }
 
 })
@@ -398,8 +388,7 @@ const displayNumber=(x)=>{
 function nextBoards(board){
     // THIS FUNCTION WORKS.
     // Board -> List[Board]
-    // finds the first emply square and generates 9 different boards filling in that square with numbers 1...9
-    const res = [];
+   // const res = [];
     const firstEmpty = findEmptySquare(board)
     if (firstEmpty != undefined){
         const y = firstEmpty[0]
@@ -429,13 +418,11 @@ function findEmptySquare(board){
 }
 
 // ______TESTS______ //
-// console.log(nextBoards(bd3))
-// console.log(findEmptySquare(bd3))
+
 // ______TESTS______ //
 
 function keepOnlyValid(boards){
     // THIS FUNCTION WORKS.
-    // List[Board] -> List[Board]
     // filters out all of the invalid boards from the list
     var res = []
     for (var i = 0; i < boards.length; i++){
@@ -523,33 +510,14 @@ function boxesGood(board){
     return true
 }
 
-/*window.addEventListener("load", timer);
 
- function timer() {
-    const clock = document.getElementById("time");
-    let time = -1, intervalId;
-    function incrementTime() {
-        time++;
-        clock.textContent =
-            ("0" + Math.trunc(time / 60)).slice(-2) +
-            ":" + ("0" + (time % 60)).slice(-2);
-    }
-    incrementTime();
-    intervalId = setInterval(incrementTime, 1000);
-}*/
+let seconds = 0;
+let tens = 0;
+const appendTens = document.getElementById("tens");
+const appendSeconds = document.getElementById("seconds");
+let Interval;
 
-var seconds = 0;
-var tens = 0;
-var appendTens = document.getElementById("tens")
-var appendSeconds = document.getElementById("seconds")
-var Interval ;
-
-
-   /* var buttonStart = document.getElementById('button-start');
-    var buttonStop = document.getElementById('button-stop');
-    var buttonReset = document.getElementById('button-reset');*/
-
-    window.addEventListener("load",start)
+window.addEventListener("load",start)
      function start() {
 
         clearInterval(Interval);
