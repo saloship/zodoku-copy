@@ -257,12 +257,14 @@ const displayGameBoard = ()=>{
                     puzzleDigits.innerHTML = value;
                 // puzzleDigits.classList.add("bolder");
 
+
                 puzzleDigits.style.color = "#3B4044";
                 puzzleDigits.style.background = "#C7DBF0";
 
             }
             else {
                 // console.log("empty")
+
             }
         }
     }
@@ -315,7 +317,7 @@ function autoInputCheck(r,c,n){
     }
     else {
         // alert("err think harder");
-            myFunction("err think harder")
+            toast("err think harder")
 
         // console.log(positionValid());
         // console.log(inputValid());
@@ -324,7 +326,7 @@ function autoInputCheck(r,c,n){
 
     }
 }
-function myFunction(text) {
+function toast(text) {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar");
 
@@ -594,5 +596,77 @@ window.addEventListener("load",start)
     }
 
 
+//______________mobile version_____________________//
+
+let numSelected = null;
+window.onload = function() {
+    setDigits();
+}
+let coor;
+
+function getTile() {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (tester[i][j] == null) {
+                let cellId = (i + 1) + "-" + (j + 1);
+                const touchTile = document.getElementById(cellId)
+                touchTile.addEventListener("touchend", selectNumber);
+                touchTile.addEventListener("touchend", coortoenter)
+                console.log(touchTile.classList)
+
+            }
+        }
+    }
+}
+getTile()
+
+function setDigits() {
+    // Digits 1-9
+    for (let i = 1; i <= 9; i++) {
+        //<div id="1" class="number">1</div>
+        let number = document.createElement("div");
+        number.id = i
+        number.innerText = i;
+        number.addEventListener("touchend", selectNumber);
+        number.classList.add("number");
+        document.getElementById("digits").appendChild(number);
+        number.addEventListener("touchend", test);
+        // number.addEventListener("touchend", highlight)
+        function highlight() {
+        }
+        function test(){
+
+            let number = this.id;
+
+            let r = parseInt(coor[0]);
+            let c = parseInt(coor[2]);
+
+            if (answerKey[r-1][c-1] == number) {
 
 
+                const tile =document.getElementById(coor);
+                tile.innerText = number;
+
+
+            }
+            else {
+                toast("how about selecting a cell first?")
+            }
+        }
+
+    }
+}
+
+function coortoenter(){
+    coor = this.id
+    return coor
+}
+
+
+function selectNumber(){
+    if (numSelected != null) {
+        numSelected.classList.remove("number-selected");
+    }
+    numSelected = this;
+    numSelected.classList.add("number-selected");
+}
