@@ -11,7 +11,7 @@
     --white:#fbfdfe;
     --black:#3B4044;
 
-    --font-size: 0.7rem;
+    --font-size: 0.8rem;
     --font-size2: 4rem;
     --grid-size:9;
     --fontFam:Arial, Helvetica, sans-serif;
@@ -116,16 +116,22 @@ body{
     grid-column: 1/2;
 }
 
+#newGame{
+    grid-column: 2/3;
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
 #refreshButton{
     transition: 0.4s;
-    grid-column: 2/3;
-    margin: 4px auto;
     border:none;
-    padding: 10px;
+    padding: 5px;
     background-color: #2e80b3;
     color:white;
     font-size: var(--font-size);
     border-radius:40px;
+
     box-shadow: 3px -3px 8px #9d9d9d, -3px 3px 8px #ffffff;
 }
 /*.sideBar{
@@ -157,6 +163,7 @@ body{
     color:black;
     padding:5px;
     display:inline-block;
+    align-content: center;
     /*background:#e0e0e0;*/
     box-shadow:3px -3px 8px #9d9d9d, -3px 3px 8px #ffffff;
 }
@@ -175,7 +182,7 @@ body{
     border-radius: 30px;
     /*background: #c7e0f8;*/
     color: #2e80b3;
-    padding:10px;
+    padding:5px;
     min-width:10px;
     margin:auto auto;
     display:inline-block;
@@ -243,4 +250,47 @@ h1{
 }
 .num:nth-child(3n){
     color: black;
+}
+#snackbar {
+    visibility: hidden;
+    background-color: #185E8A;
+    min-width: 250px;
+    margin-left: -125px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+}
+
+
+#snackbar.show {
+    visibility: visible;
+
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
 }

@@ -314,13 +314,25 @@ function autoInputCheck(r,c,n){
         console.log("passed true")
     }
     else {
-        alert("err think harder");
+        // alert("err think harder");
+            myFunction("err think harder")
+
         // console.log(positionValid());
         // console.log(inputValid());
         // console.log(matchAnswer());
         // console.log(n);
 
     }
+}
+function myFunction(text) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+    x.innerHTML = text
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 //still to work on
