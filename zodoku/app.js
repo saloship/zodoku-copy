@@ -611,7 +611,13 @@ function getTile() {
                 let cellId = (i + 1) + "-" + (j + 1);
                 const touchTile = document.getElementById(cellId)
                 touchTile.addEventListener("touchend", selectNumber);
-                touchTile.addEventListener("touchend", coortoenter)
+                // touchTile.addEventListener("touchend", feed(2));
+                if(this.touched){
+                    feed(2)
+                }
+                // touchTile.addEventListener("click", selectNumber);
+                touchTile.addEventListener("touchend", coortoenter);
+                // touchTile.addEventListener("click", coortoenter);
                 console.log(touchTile.classList)
 
             }
@@ -628,31 +634,38 @@ function setDigits() {
         number.id = i
         number.innerText = i;
         number.addEventListener("touchend", selectNumber);
+
+        // number.addEventListener("click", selectNumber);
         number.classList.add("number");
         document.getElementById("digits").appendChild(number);
         number.addEventListener("touchend", test);
+        // number.addEventListener("click", test);
         // number.addEventListener("touchend", highlight)
         function highlight() {
         }
         function test(){
 
-            let number = this.id;
+                let number = this.id;
 
-            let r = parseInt(coor[0]);
-            let c = parseInt(coor[2]);
+                let r = parseInt(coor[0]);
+                let c = parseInt(coor[2]);
 
-            if (answerKey[r-1][c-1] == number) {
+                if (answerKey[r - 1][c - 1] == number) {
+                    // const coorstr = coor.toString()
+                    console.log(coor)
+                    const tile = document.getElementById(coor);
+                    console.log(number)
+                    tile.innerHTML = number;
+                    user_answers[r - 1][c - 1] = number;
 
 
-                const tile =document.getElementById(coor);
-                tile.innerText = number;
-                user_answers[r-1][c-1]=number;
 
-
-            }
-            else {
-                toast("how about selecting a cell first?")
-            }
+                } else {
+                    toast("err think harder")
+                }
+            if(coor = null) {
+                   toast("how about selecting a cell first?")
+               }
         }
 
     }
@@ -671,3 +684,15 @@ function selectNumber(){
     numSelected = this;
     numSelected.classList.add("number-selected");
 }
+function feed(i){
+
+    if(i= 1){
+
+        return false
+
+    }
+    if(i=2){
+ return true
+    }
+}
+
