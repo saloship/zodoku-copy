@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
     <title>Zodoku</title>
     <link rel="stylesheet" href="app.css">
+<!--    <link rel="icon" type="image/png" href="zodoku.png">-->
 
 </head>
 <body>
@@ -32,15 +33,15 @@
                 <div id="level">
                     <label for="levels">level:</label>
                     <select name="levels" id="levels" onchange="clearTheBoard()">
-                        <option value="1">Easy</option>
-                        <option value="2">Medium</option>
-                        <option value="3">Hard</option>
-                        <option value="4">Extreme</option>
+                        <option value="2">Easy</option>
+                        <option value="3">Medium</option>
+                        <option value="4">Hard</option>
+                        <option value="5">Extreme</option>
                     </select>
                 </div>
 
-                <span id="seconds">Timer ::   <span id="time" >00:00</span></span>
-<!--                    <p id="timer"> Timer:<span id="seconds">00</span>:<span id="tens">00</span></p>-->
+<!--                <span id="seconds">Timer ::   <span id="time" >00:00</span></span>-->
+                    <p id="timer"> Timer:<span id="seconds">00</span>:<span id="tens">00</span></p>
 
             </div>
             <br>
@@ -58,7 +59,7 @@
 
             <div id="main-grid"></div>
             <br>
-            <input type="text" id="message" maxlength="3" onchange="takeInput()">
+            <input type="text" id="message" maxlength="10" >
             <br>
 
                 <div class="bottomBar">

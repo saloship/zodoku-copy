@@ -89,8 +89,6 @@ let puzzle = [];// for testing
 let tester;  //used in validating the input position
 let m ;//used in end answer check YET TO PUT TO WORK
 
-
-
 //taking string from the textBox and passing to an array: answer in format r,c,n
 
 
@@ -135,7 +133,7 @@ function solve(board) {
     }
 }
 const pokingHoles = (array)=> {
-    let holes = (levelSelected())*13;
+    let holes = (levelSelected())*12;
     m = holes;
     // const levelHole = Math.floor(Math.random() * (11 - 8 + 1) + 8)
     const temp = [...array];
@@ -227,7 +225,10 @@ const clearTheBoard = ()=>{
 
         }
     }
-    timer();
+
+    reset()
+    start()
+
     displayGameBoard()
 }
 
@@ -280,24 +281,30 @@ let textBox = document.getElementById('message');
 
 
 /*textBox.addEventListener('change',(event)=>{});*/
-const takeInput=()=>{
-    if (textBox.value.length >=3){
+textBox.addEventListener("keyup",(takeInput)=>{
+// const takeInput=()=>{
+    if (textBox.value.length === 3){
 
 
         r = textBox.value[0];
         c = textBox.value[1];
         n= textBox.value[2];
+        autoInputCheck(r,c,n);
+        // inputCheck(r,c,n)
+        setTimeout(clearText,500)
+        function clearText(){
+            textBox.value = "";
+        }
         // user_answers[(r-1)*size + (c-1)]= n;
-        textBox.value = "";
+        // textBox.value = "";
 
         // console.log(user_answers);
-        autoInputCheck(r,c,n);
 
 
 
     }
 
-}
+})
 
 
 function autoInputCheck(r,c,n){
@@ -315,14 +322,26 @@ function autoInputCheck(r,c,n){
 
     }
 }
+
+//still to work on
 function inputCheck(){
+    if(positionValid()&&inputValid()){
+    displayNumber(n)}
+    let counter = 0;
     if (puzzleCompleted()){
         for (let i = 0; i < 9; i++) {
             for (let j = 0; j < 9; j++) {
-                if (user_answers[i][j] === mainPuzzle()[i][j]) {
-                    return alert("yaae you completed it!")
+                if (user_answers[i][j] === answerKey[i][j]) {// to work on: user_answer to compare with the array of poked out numbers
+                    counter++
                 }
             }
+            return counter
+        }
+        if (counter== m){
+            alert("you completed correctly")
+        }
+        else {
+            alert("completed but its not correct")
         }
     }
 
@@ -333,17 +352,20 @@ const puzzleCompleted=()=>{
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
 
-            if(user_answers[i][j]==null){
+            if(user_answers[i][j]!==null){
                 counter++
-                if(counter===m){
-                    return true
-
-                }
+            console.log(counter)
             }
         }
     }
+    if(counter===m){
+        alert("yay you completed it!")
+        return true
+
+    }
     return false
 }
+puzzleCompleted()
 
 
 
@@ -501,7 +523,7 @@ function boxesGood(board){
     return true
 }
 
-window.addEventListener("load", timer);
+/*window.addEventListener("load", timer);
 
  function timer() {
     const clock = document.getElementById("time");
@@ -514,60 +536,70 @@ window.addEventListener("load", timer);
     }
     incrementTime();
     intervalId = setInterval(incrementTime, 1000);
-}
-/*
-window.addEventListener("load", function() {
+}*/
 
-    var seconds = 0;
-    var tens = 0;
-    var appendTens = document.getElementById("tens")
-    var appendSeconds = document.getElementById("seconds")
+var seconds = 0;
+var tens = 0;
+var appendTens = document.getElementById("tens")
+var appendSeconds = document.getElementById("seconds")
+var Interval ;
 
-    //start
+
+   /* var buttonStart = document.getElementById('button-start');
+    var buttonStop = document.getElementById('button-stop');
+    var buttonReset = document.getElementById('button-reset');*/
+
+    window.addEventListener("load",start)
+     function start() {
+
         clearInterval(Interval);
-        let Interval = setInterval(startTimer, 10);
-
-
-
-function startTimer () {
-    tens++;
-
-    if(tens <= 9){
-        appendTens.innerHTML = "0" + tens;
+        Interval = setInterval(startTimer, 1000);
     }
 
-    if (tens > 9){
+
+
+     function stop() {
+        clearInterval(Interval);
+    }
+
+
+    function reset() {
+        clearInterval(Interval);
+        tens = "00";
+        seconds = "00";
         appendTens.innerHTML = tens;
+        appendSeconds.innerHTML = seconds;
+    }
+
+
+
+
+    function startTimer () {
+        tens++;
+
+        if(tens <= 9){
+            appendTens.innerHTML = "0" + tens;
+        }
+
+        if (tens > 9){
+            appendTens.innerHTML = tens;
+
+        }
+
+        if (tens > 59) {
+            console.log("seconds");
+            seconds++;
+            appendSeconds.innerHTML = "0" + seconds;
+            tens = 0;
+            appendTens.innerHTML = "0" + 0;
+        }
+
+        if (seconds > 9){
+            appendSeconds.innerHTML = seconds;
+        }
 
     }
 
-    if (tens > 99) {
-        console.log("seconds");
-        seconds++;
-        appendSeconds.innerHTML = "0" + seconds;
-        tens = 0;
-        appendTens.innerHTML = "0" + 0;
-    }
-
-    if (seconds > 9){
-        var second = seconds.toString()
-        appendSeconds.innerHTML = second;
-    }
-
-}
 
 
-})
-//stop
-clearInterval(Interval);
 
-//reset
-onresets = function () {
-    clearInterval(Interval);
-    tens = "00";
-    seconds = "00";
-    appendTens.innerHTML = tens;
-    appendSeconds.innerHTML = seconds;
-}
-
-*/
