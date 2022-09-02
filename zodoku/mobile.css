@@ -31,28 +31,31 @@ body{
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /*grid-template-columns: 1fr;*/
     justify-content: center;
 
 
 }
 
 .main-game{
-    grid-column: 2/3;
+  /*  grid-column: 1/2;*/
     display: grid;
-    grid-template-rows: repeat(6,auto);
-    grid-template-columns: 4px 220px;
+    grid-template-rows: repeat(2,auto) 15px repeat(3,auto);
+    grid-template-columns: 15px auto;
     grid-row: span;
     height: 100%;
+    width: 100%;
     flex-direction: column;
-    justify-items: center;
+    /*justify-items: center;*/
 }
 #main-grid{
     display: grid; /* layout is defined in app.js */
     gap: var(--gap);
     grid-row: 4/5;
-    max-width: 300px;
+    min-width: 100%;
+    min-height: 100%;
     grid-column: span;
+    /*margin-left: 0px;*/
 }
 .main-game-sub{
     grid-column: 2/3;
@@ -60,8 +63,8 @@ body{
 
 #main-grid div{
     font-family: var(--fontFam);
-    height: var(--sudoku-cell-size) ;
-    width: var(--sudoku-cell-size);
+    min-height: var(--sudoku-cell-size) ;
+    min-width: var(--sudoku-cell-size);
     background-color: var(--white);
     color: var(--blue);
     font-size: var(--font-size);
@@ -140,13 +143,13 @@ body{
 .horizontalDivide{
     border-bottom: 3px solid rgba(142, 169, 195,0.9);
     /*border: solid 4px rgba(#ffffff, .03);*/
-    box-shadow: 0px 6px 4px #4F565B;
+    box-shadow: 0px 3px 3px #4F565B;
 
 
 }
 .verticalDivide{
     border-right: 1px solid #9d9d9d;
-    box-shadow: 6px 0px 3px #4F565B;
+    box-shadow: 3px 0px 3px #4F565B;
 }
 #level{
     transition: 0.4s;
