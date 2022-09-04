@@ -279,8 +279,8 @@ const setGameBoard = ()=>{
 
 let checkBox = document.getElementById("autoCheck")
 let textBox = document.getElementById('message');
-
-
+let errCounter = document.getElementById('counter')
+let counter=0;
 
 /*textBox.addEventListener('change',(event)=>{});*/
 textBox.addEventListener("keyup",(takeInput)=>{
@@ -293,7 +293,7 @@ textBox.addEventListener("keyup",(takeInput)=>{
         n= textBox.value[2];
         autoInputCheck(r,c,n);
         // inputCheck(r,c,n)
-        setTimeout(clearText,500)
+        setTimeout(clearText,600)
         function clearText(){
             textBox.value = "";
         }
@@ -310,15 +310,18 @@ textBox.addEventListener("keyup",(takeInput)=>{
 
 
 function autoInputCheck(r,c,n){
-    if((positionValid())&&(inputValid())&&(matchAnswer())){
+    let srtCounter;
+    if ((positionValid()) && (inputValid()) && (matchAnswer())) {
         displayNumber(n);
-        user_answers[(r-1)*size + (c-1)]= n;
+        user_answers[(r - 1) * size + (c - 1)] = n;
         console.log("passed true")
-    }
-    else {
+    } else {
         // alert("err think harder");
-            toast("err think harder")
-
+        toast("err think harder")
+        counter++;
+        srtCounter = counter.toString()
+        errCounter.innerHTML = srtCounter
+        return counter
         // console.log(positionValid());
         // console.log(inputValid());
         // console.log(matchAnswer());
@@ -334,7 +337,7 @@ function toast(text) {
     x.className = "show";
     x.innerHTML = text
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 500);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 800);
 }
 
 //still to work on
@@ -618,7 +621,7 @@ function getTile() {
                 // touchTile.addEventListener("click", selectNumber);
                 touchTile.addEventListener("touchend", coortoenter);
                 // touchTile.addEventListener("click", coortoenter);
-                console.log(touchTile.classList)
+                // console.log(touchTile.classList)
 
             }
         }
@@ -652,9 +655,9 @@ function setDigits() {
 
                 if (answerKey[r - 1][c - 1] == number) {
                     // const coorstr = coor.toString()
-                    console.log(coor)
+                    // console.log(coor)
                     const tile = document.getElementById(coor);
-                    console.log(number)
+                    // console.log(number)
                     tile.innerHTML = number;
                     user_answers[r - 1][c - 1] = number;
 
