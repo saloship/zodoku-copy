@@ -1,4 +1,4 @@
-//to check the connection
+
 // console.log(alert("working"));
 
 
@@ -84,7 +84,6 @@ let r,c,n;
 const g = null
 
 let user_answers = twoDimensionArray(9,9);//initialise user_answer
-let answerKey= [];
 let puzzle = [];// for testing
 let tester;  //used in validating the input position
 let m ;//used in end answer check YET TO PUT TO WORK
@@ -132,23 +131,26 @@ function solve(board) {
         return searchForSolution(validBoards)
     }
 }
+
+let answerKey= twoDimensionArray(9,9)
 const pokingHoles = (array)=> {
-    let holes = (levelSelected())*12;
+    let holes = (levelSelected())*13;
     m = holes;
     // const levelHole = Math.floor(Math.random() * (11 - 8 + 1) + 8)
     const temp = [...array];
     while (holes !== 0) {
         let v = num[Math.floor(Math.random() * 9)];
         let u = num[Math.floor(Math.random() * 9)];
-        const w = null;
-        if (temp[v - 1][u - 1] !== w) {
-            temp[v - 1][u - 1] = w;
+        if (temp[v - 1][u - 1] !== g) {
+            answerKey[v-1][u-1]=temp[v-1][u-1]
+            temp[v - 1][u - 1] = g;
             holes--;
         }
 
     }
     return temp;
 }
+
 
 // ______TESTS______ //
 // console.log(fillDiagonal(twoDimensionArray(9,9)))
@@ -236,13 +238,8 @@ function mainPuzzle(){
     const first = twoDimensionArray(9,9)
     const baseArray = fillDiagonal(first)
     const solution = solve(baseArray)
-    answerKey = [...solve(baseArray)];
     return pokingHoles(solution)
 }
- let testPuzzle = mainPuzzle();
-/*console.log(testPuzzle);
-console.log(answerKey)*/
-
 
 
 const displayGameBoard = ()=>{
@@ -259,7 +256,7 @@ const displayGameBoard = ()=>{
 
 
                 puzzleDigits.style.color = "#3B4044";
-                puzzleDigits.style.background = "#C7DBF0";
+                puzzleDigits.style.background = "rgba(199, 219, 240,0.9)";//rgb(199, 219, 240)
 
             }
             else {
@@ -277,32 +274,74 @@ const setGameBoard = ()=>{
 
 }
 
+
+
 let checkBox = document.getElementById("autoCheck")
 let textBox = document.getElementById('message');
 let errCounter = document.getElementById('counter')
 let counter=0;
+let answerNum = 0;
 
+let cellSelected = null;
 /*textBox.addEventListener('change',(event)=>{});*/
 textBox.addEventListener("keyup",(takeInput)=>{
-// const takeInput=()=>{
+
+    r = textBox.value[0];
+    c = textBox.value[1];
+    n= textBox.value[2];
+    let rowSelected;
+
+
+    const selectedRow = function () {
+        for (let j = 1; j < 10; j++) {
+            let cellId = r + "-" + j;
+            rowSelected = document.getElementById(cellId);
+            // console.log(cellId)
+            if(textBox.value.length ===1) {
+                rowSelected.classList.add('rowselected')
+            }
+            else if(textBox.value.length===0) {
+
+            }
+            else {
+                rowSelected.classList.remove('rowselected')
+            }
+        }
+    }
+    const selectCell = function(){
+        let cellId= r+"-"+c;
+        if (cellSelected != null) {
+            cellSelected.classList.remove("cellselected");
+        }
+        cellSelected = document.getElementById(cellId);
+        cellSelected.classList.add("cellselected");
+    }
+
+    if(textBox.value.length===1){
+       selectedRow()
+    }
+    if (textBox.value.length===0){
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                let cellId = (i+1)+"-"+(j+1);
+                const everyCell = document.getElementById(cellId)
+                everyCell.classList.remove('rowselected','cellselected')
+
+            }
+        }
+
+    }
+    if(textBox.value.length ===2){
+        selectedRow()
+        selectCell()
+    }
     if (textBox.value.length === 3){
-
-
-        r = textBox.value[0];
-        c = textBox.value[1];
-        n= textBox.value[2];
         autoInputCheck(r,c,n);
         // inputCheck(r,c,n)
         setTimeout(clearText,600)
         function clearText(){
             textBox.value = "";
         }
-        // user_answers[(r-1)*size + (c-1)]= n;
-        // textBox.value = "";
-
-        // console.log(user_answers);
-
-
 
     }
 
@@ -315,19 +354,18 @@ function autoInputCheck(r,c,n){
         displayNumber(n);
         user_answers[(r - 1) * size + (c - 1)] = n;
         console.log("passed true")
-    } else {
-        // alert("err think harder");
+        answerNum++;
+       puzzleCompleted()
+
+    }
+    else {
         toast("err think harder")
         counter++;
         srtCounter = counter.toString()
         errCounter.innerHTML = srtCounter
         return counter
-        // console.log(positionValid());
-        // console.log(inputValid());
-        // console.log(matchAnswer());
-        // console.log(n);
-
     }
+
 }
 function toast(text) {
     // Get the snackbar DIV
@@ -340,52 +378,36 @@ function toast(text) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 800);
 }
 
+
+
 //still to work on
+
+
+
+const puzzleCompleted = ()=>{
+   if(answerNum===m){
+       toast('you finally did it!!!')
+   }
+   return true
+}
+
 function inputCheck(){
     if(positionValid()&&inputValid()){
-    displayNumber(n)}
-    let counter = 0;
-    if (puzzleCompleted()){
-        for (let i = 0; i < 9; i++) {
-            for (let j = 0; j < 9; j++) {
-                if (user_answers[i][j] === answerKey[i][j]) {// to work on: user_answer to compare with the array of poked out numbers
-                    counter++
+    displayNumber(n)
+    answerNum++
+    }
+    if(puzzleCompleted()){
+        for (let i = 0;i<9;i++){
+            for (let j = 0;j<9;j++){
+                if(user_answers!== answerKey){
+                    toast('completely filled but wronly filled')
+                    return false;
                 }
             }
-            return counter
         }
-        if (counter== m){
-            alert("you completed correctly")
-        }
-        else {
-            alert("completed but its not correct")
-        }
-    }
 
+    }
 }
-
-const puzzleCompleted=()=>{
-    let counter = 0;
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-
-            if(user_answers[i][j]!==null){
-                counter++
-            console.log(counter)
-            }
-        }
-    }
-    if(counter===m){
-        alert("yay you completed it!")
-        return true
-
-    }
-    return false
-}
-puzzleCompleted()
-
-
-
 
 const positionValid=()=>{
 
@@ -397,8 +419,7 @@ const inputValid = ()=>{
 }
 
 const matchAnswer = ()=>{
-    return n == answerKey[r-1][c-1];// == as n is string and answerkey stores number
-
+    return n == answerKey[r-1][c-1];
 }
 const displayNumber=(x)=>{
     let cellId = r + "-" + c;
@@ -451,11 +472,8 @@ function findEmptySquare(board){
 // ______TESTS______ //
 
 function keepOnlyValid(boards){
-    // THIS FUNCTION WORKS.
-    // List[Board] -> List[Board]
-    // filters out all of the invalid boards from the list
-    var res = []
-    for (var i = 0; i < boards.length; i++){
+    const res = [];
+    for (let i = 0; i < boards.length; i++){
         if (validBoard(boards[i])){
             res.push(boards[i])
         }
@@ -469,16 +487,10 @@ function keepOnlyValid(boards){
 
 
 function validBoard(board){
-    // THIS FUNCTION WORKS.
-    // Board -> Boolean
-    // checks to see if given board is valid
     return rowsGood(board) && columnsGood(board) && boxesGood(board)
 }
 
 function rowsGood(board){
-    // THIS FUNCTION WORKS.
-    // Board -> Boolean
-    // makes sure there are no repeating numbers for each row
     for (let i = 0; i < 9; i++){
         const cur = [];
         for (let j = 0; j < 9; j++){
@@ -494,9 +506,6 @@ function rowsGood(board){
 }
 
 function columnsGood(board){
-    // THIS FUNCTION WORKS.
-    // Board -> Boolean
-    // makes sure there are no repeating numbers for each column
     for (let i = 0; i < 9; i++){
         const cur = [];
         for (let j = 0; j < 9; j++){
@@ -517,9 +526,6 @@ function boxesGood(board){
     const boxCoordinates = [[0, 0], [0, 1], [0, 2],
         [1, 0], [1, 1], [1, 2],
         [2, 0], [2, 1], [2, 2]]
-    // THIS FUNCTION WORKS.
-    // Board -> Boolean
-    // makes sure there are no repeating numbers for each box
     for (let y = 0; y < 9; y += 3){
         for (let x = 0; x < 9; x += 3){
             // each traversal should examine each box
@@ -660,6 +666,8 @@ function setDigits() {
                     // console.log(number)
                     tile.innerHTML = number;
                     user_answers[r - 1][c - 1] = number;
+                    answerNum++
+                    puzzleCompleted();
 
 
 

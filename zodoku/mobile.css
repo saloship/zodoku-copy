@@ -11,6 +11,7 @@
     --white:#fbfdfe;
     --black:#3B4044;
 
+    --border-radius:18px;
     --font-size: 0.8rem;
     --font-size2: 4rem;
     --grid-size:9;
@@ -25,7 +26,7 @@
     font-family: var(--fontFam);
     font-size: var(--font-size);
     display: grid;
-    grid-template-rows: repeat(2,auto) 15px repeat(3,auto);
+    grid-template-rows: repeat(2,auto) 30px repeat(3,auto);
     grid-template-columns: 15px 1fr;
     grid-row: span;
     height: 100%;
@@ -105,7 +106,7 @@
     display: flex;
     margin: auto;
     background-color: rgba(255,0,0,0.2);
-    border-radius: 30px;
+    border-radius: var(--border-radius);
     padding: 5px;
     box-shadow:3px -3px 6px #9d9d9d, -2px 2px 3px #ffffff;
 
@@ -139,7 +140,7 @@
     background-color: #2e80b3;
     color:white;
     font-size: var(--font-size);
-    border-radius:40px;
+    border-radius:var(--border-radius);
 
     box-shadow: 3px -3px 8px #9d9d9d, -3px 3px 8px #ffffff;
 }
@@ -154,20 +155,23 @@
     color: #EB1D36;
 }*/
 .horizontalDivide{
-    border-bottom: 3px solid rgba(142, 169, 195,0.9);
+    /*border-bottom: 3px solid rgba(142, 169, 195,0.9);*/
     /*border: solid 4px rgba(#ffffff, .03);*/
-    box-shadow: 0px 3px 3px #4F565B;
-
+    /*box-shadow: 0px 3px 3px #4F565B;*/
+    border-bottom: 4px solid rgba(142, 170, 195,0.9);
+    margin-bottom: 4px;
 
 }
 .verticalDivide{
-    border-right: 1px solid #9d9d9d;
-    box-shadow: 3px 0px 3px #4F565B;
+    /*border-right: 1px solid #9d9d9d;*/
+    /*box-shadow: 3px 0px 3px #4F565B;*/
+    border-right: 3px solid #9d9d9d;
+    margin-right: 4px;
 }
 #level{
     transition: 0.4s;
     margin: auto auto;
-    border-radius: 30px;
+    border-radius: var(--border-radius);
     /*background: #c7e0f8;*/
     color:black;
     padding:5px;
@@ -183,12 +187,12 @@
     background-color: #c7e0f8;
     border: none;
     color: var(--blue);
-    border-radius: 30px;
+    border-radius: var(--border-radius);
     padding: 2px;
     font-size: 10px;
 }
 #seconds, #tens {
-    border-radius: 30px;
+    border-radius: var(--border-radius);
     /*background: #c7e0f8;*/
     color: #2e80b3;
     padding:5px;
@@ -225,7 +229,7 @@ h1{
     width: 100%;
     max-width: 510px;
     flex-direction: row;
-    margin-top: 4px;
+    margin-top: 8px;
     display: grid;
     grid-template-columns: repeat(9,1fr);
     justify-content: space-between;
@@ -234,9 +238,10 @@ h1{
 .num{
     display: flex;
     color: cornflowerblue;
-    font-size: 0.7rem;
+    font-size: 1em;
+    font-weight: bold;
     justify-content: center;
-
+    padding: 4px;
 }
 .guideNumRow{
     grid-column: 1/2;
@@ -245,6 +250,7 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin: 0 auto;
 
 
 
@@ -297,7 +303,7 @@ h1{
     min-height: var(--sudoku-cell-size);
     /*max-height: 30px;*/
     border: none;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     font-family: var(--fontFam);
     margin: 2px;
     box-shadow:0px -0px 4px #9d9d9d, -0px 4px 4px #9d9d9d;
