@@ -20,6 +20,7 @@
     --fontFam:Arial, Helvetica, sans-serif;
 
     --box-shadow: 0px -6px 6px #cadef1cf, 0px 8px 8px 0px hsl(0deg 0% 100% / 87%);
+    --box-shadow-reverse: -1px -4px 4px 0px hsl(0deg 0% 100% / 87%), -1px 5px 6px #cadef1ab;
 
 
 }
@@ -91,7 +92,7 @@ body{
          gap: var(--gap);
          grid-row: 5/6;
          border: none;
-         box-shadow: 1px -2px 8px #ffffff, -3px 3px 4px #9d9d9d;
+         box-shadow: var(--box-shadow-reverse);
          height: 30px;
          border-radius: var(--border-radius);
 
