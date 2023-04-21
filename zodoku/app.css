@@ -27,11 +27,12 @@
 body{
     /*background-image: url("cloudy-day.webp");*/
     /*background-size: cover;*/
-    overflow-x: hidden;
+    overflow: hidden;
     margin: 0;
     top: 0;
     left: 0;
-    height: 100vh;
+    position: absolute;
+    height: 90vh;
     width: 100vw;
     background-color:var(--bg-test);
     font-family: var(--fontFam);
@@ -121,6 +122,19 @@ body{
     }
     #autoCheck{
         grid-column: 1/2;
+    }
+/*latest updates*/
+    #checkButton{
+        display: flex;
+        align-items: center;
+    }
+    #newGame{
+        display: flex;
+        align-items: center;
+    }
+    #timer{
+        display: flex;
+        align-items: center;
     }
 
     #refreshButton{
@@ -285,10 +299,11 @@ grid-row: 4/5;
 #error{
     grid-column: 3/4;
     display: flex;
-    background-color: rgba(255,0,0,0.2);
+    align-items: center;
+    background-color: hsl(212.47deg 100% 50% / 20%);
     border-radius: var(--border-radius);
-    margin: 0 auto;
-    padding: 10px;
+    margin: auto auto;
+    padding: 0px 10px;
 
 
 }
@@ -298,6 +313,7 @@ grid-row: 4/5;
     margin:auto auto;
     display:inline-block;
     text-align: center;
+    padding: 10px;
 
 }
 #digits{
