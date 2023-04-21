@@ -176,6 +176,7 @@ margin-bottom: 4px;
 }
 #time{
     color: #2e80b3;
+    padding: 10px;
 }
 h1{
     box-shadow:var(--box-shadow);
