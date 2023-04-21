@@ -28,6 +28,9 @@ body{
     /*background-image: url("cloudy-day.webp");*/
     /*background-size: cover;*/
     overflow-x: hidden;
+    margin: 0;
+    top: 0;
+    left: 0;
     height: 100vh;
     width: 100vw;
     background-color:var(--bg-test);
